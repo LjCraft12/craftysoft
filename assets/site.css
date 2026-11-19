@@ -1,0 +1,139 @@
+/* Crafty Soft site. Colours follow Compass Ultra's tokens (SPEC §2.1). */
+:root {
+  --bg: #F3F4F6;
+  --surface: #FFFFFF;
+  --hairline: #E1E4E9;
+  --border: #D5D9E0;
+  --outline: #B4BBC6;
+  --text: #14171C;
+  --dim: #5A6370;
+  --accent: #8F5600;
+  --accent-fill: #F2A33A;
+  --on-accent: #17120A;
+  --north: #C8281C;
+  --glow: rgba(242, 163, 58, 0.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B0D10;
+    --surface: #14171C;
+    --hairline: #262B33;
+    --border: #2A2F38;
+    --outline: #3A414D;
+    --text: #ECEFF3;
+    --dim: #8A93A0;
+    --accent: #F2A33A;
+    --north: #FF5A4D;
+    --glow: rgba(242, 163, 58, 0.08);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.6 "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+.mono {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ---------- header and footer ---------- */
+.top { border-bottom: 1px solid var(--hairline); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 500; font-size: 18px; }
+.brand svg { width: 26px; height: 26px; flex: none; }
+.top nav { display: flex; gap: 20px; }
+.top nav a { color: var(--dim); text-decoration: none; }
+.top nav a:hover, .top nav a[aria-current] { color: var(--text); }
+
+footer { border-top: 1px solid var(--hairline); margin-top: 72px; }
+footer .wrap { padding-top: 28px; padding-bottom: 40px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; color: var(--dim); font-size: 15px; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding: 56px 0 8px; }
+.hero::before {
+  content: ""; position: absolute; inset: -40px 0 auto; height: 420px; z-index: -1;
+  background: radial-gradient(50% 60% at 50% 30%, var(--glow), transparent 70%);
+}
+.hero h1 { font-weight: 500; font-size: clamp(36px, 7vw, 52px); line-height: 1.05; letter-spacing: -0.02em; margin: 14px 0 12px; }
+.hero p.lead { font-size: 19px; color: var(--dim); margin: 0; max-width: 560px; }
+.app-mark { display: flex; align-items: center; gap: 16px; }
+.app-mark img { width: 64px; height: 64px; border-radius: 16px; border: 1px solid var(--border); }
+
+/* ---------- summary cards ---------- */
+.summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 36px 0 8px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 18px 16px; }
+.card h3 { margin: 10px 0 4px; font-size: 17px; font-weight: 500; }
+.card p { margin: 0; color: var(--dim); font-size: 15px; line-height: 1.5; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-fill); }
+
+/* ---------- policy body ---------- */
+.policy h2 {
+  font-weight: 500; font-size: 24px; letter-spacing: -0.01em; margin: 52px 0 12px;
+  padding-top: 24px; border-top: 1px solid var(--hairline);
+}
+.policy p, .policy li { color: var(--text); }
+.policy p.dim { color: var(--dim); }
+.policy ul { padding-left: 22px; }
+.policy li { margin-bottom: 6px; }
+
+/* Dotted leader rows, as in the app's readings sheet. */
+.rows { margin: 8px 0 16px; }
+.row { padding: 14px 0; border-bottom: 1px solid var(--hairline); }
+.row:last-child { border-bottom: 0; }
+.row .k { display: flex; align-items: baseline; gap: 10px; }
+.row .k .mono { color: var(--text); white-space: nowrap; }
+.row .k::after { content: ""; flex: 1; border-bottom: 1px dotted var(--outline); transform: translateY(-4px); }
+.row p { margin: 6px 0 0; color: var(--dim); font-size: 16px; }
+
+.callout {
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent-fill);
+  border-radius: 12px; padding: 16px 18px; margin: 16px 0;
+}
+.callout p { margin: 0; }
+
+/* ---------- home page ---------- */
+.app-card {
+  display: grid; grid-template-columns: 1fr 220px; gap: 28px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 28px; padding: 28px; margin-top: 40px;
+}
+.app-card h2 { margin: 12px 0 8px; font-size: 30px; font-weight: 500; letter-spacing: -0.01em; }
+.app-card p { color: var(--dim); margin: 0 0 18px; }
+.app-card .shots { position: relative; height: 330px; }
+.app-card .shots img {
+  position: absolute; width: 150px; border-radius: 18px; border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+.app-card .shots img:first-child { left: 0; top: 26px; transform: rotate(-5deg); }
+.app-card .shots img:last-child { right: 0; top: 0; transform: rotate(4deg); }
+.features { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; }
+.features li { border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: 14px; color: var(--text); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 26px;
+  font-weight: 500; text-decoration: none; border: 1px solid var(--outline); color: var(--text);
+}
+.btn.primary { background: var(--accent-fill); border-color: var(--accent-fill); color: var(--on-accent); font-weight: 600; }
+.btn[aria-disabled="true"] { opacity: 0.55; pointer-events: none; }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .summary { grid-template-columns: 1fr; }
+  .app-card { grid-template-columns: 1fr; padding: 22px; }
+  .app-card .shots { height: 340px; max-width: 290px; margin: 0 auto; width: 100%; }
+  .top nav { gap: 14px; font-size: 15px; }
+}
